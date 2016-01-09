@@ -1,9 +1,9 @@
 # Colcise
 
 Python script that takes a string of multiple lines (\n) and an argument as that
-is the delimeter to be used to create columns.
+is the deli-meter to be used to create columns.
 
-Colcise works nicely together with vims ability to perform external commands on
+Colcise works nicely together with vim's ability to perform external commands on
 visual selections. One performs colciseness on a visual selection with a few
 steps
 
@@ -11,8 +11,8 @@ steps
 - Enter command mode by pressing :
 - Then type !colcise
 
-The default beheviour performs colcision using a space as delimeter and
-seperator.
+The default behavior performs colcision using a space as delimiter and
+separator.
 
 ## Setup
 
@@ -40,17 +40,17 @@ If $PATH is setup correctly you should now be able to use colcise.
 
 ## Options
 
--d	the delimeter to be used
+-d	the delimiter to be used
 
-select what string to use for seperate the columns. A space as default
+select what string to use for separate the columns. A space as default
 
-say if subsequent delimeters should be disregarded of concidered as columns
+say if subsequent delimiters should be disregarded of concidered as columns
 
-choose what delimeter to use for creating the columns
+choose what delimiter to use for creating the columns
 
 ## Examples
 
-### Define what to use as the delimeter
+### Define what to use as the delimiter
 
 ```javascript
 john = registerPerson("John", "Jiggles");
@@ -61,12 +61,13 @@ jane = registerPerson("Jane", "Joker");
 colcise -d '=' | colcise -d ',' -p
 ```
 ```javascript
-john = registerPerson("John", "Jiggles");
+john  = registerPerson("John",  "Jiggles");
 jesse = registerPerson("Jesse", "James");
-jane = registerPerson("Jane", "Joker");
+jane  = registerPerson("Jane",  "Joker");
+
 ```
 
-### Define what to use as the seperator
+### Define what to use as the separator
 
 Notice how the blank lines are still there.
 
@@ -94,12 +95,12 @@ colcise -d 'type'
 <script src="app/puzzles/medium.js" type="text/javascript" charset="utf-8"></script>
 ```
 
-### Ignore sequential delimeters
+### Ignore sequential delimiters
 
-By default colcise ignores subsequent delimter strings. Assuming that the
-delimeter is the default space, the following behaviour is to be expected.
+By default colcise ignores subsequent delimiter strings. Assuming that the
+delimiter is the default space, the following behavior is to be expected.
 
-*Notice all the spaces between the words and how they are all treated like one space*
+*Notice all the spaces between the words, and how they are all treated like one space.*
 
 ```txt
 hello  world
@@ -116,3 +117,6 @@ goodbye  regret
 happy    times
 glorious day
 ```
+
+## Bugs
+- An unwanted new line is added at the bottom
