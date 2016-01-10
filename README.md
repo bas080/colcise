@@ -40,17 +40,41 @@ If $PATH is setup correctly you should now be able to use colcise.
 
 ## Options
 
--d	the delimiter to be used
+    -d
+    --delimiter
+        the string to be used to split lines into columns.
 
-select what string to use for separate the columns. A space as default
+    -s
+    --separator
+        select what string to use for separate the columns. When not defined it
+        defaults to the same string as the delimiter.
 
-say if subsequent delimiters should be disregarded of concidered as columns
+    -p
+    --prepend-separator
+        places the separator in front of the spacing.
 
-choose what delimiter to use for creating the columns
+    -a
+    --append_separator
+        places the separator after the spacing. This is the default behavior.
+
+    -l
+    --alignment
+        define the way the text withing columns should be aligned. The first
+        letter represents the alignment of the first column, the second letter
+        the second column etc.
+
+        l = left
+        r = right
+        m = middle <<< not yet implemented
+
+    -i
+    --ignore
+        toggles the ignoring of subsequent delimiters to false, causing every
+        delimiter to create a new column.
 
 ## Examples
 
-### Define what to use as the delimiter
+**Define what to use as the delimiter**
 
 ```javascript
 john = registerPerson("John", "Jiggles");
@@ -67,7 +91,7 @@ jane  = registerPerson("Jane",  "Joker");
 
 ```
 
-### Define what to use as the separator
+**Define what to use as the separator**
 
 Notice how the blank lines are still there.
 
@@ -95,7 +119,7 @@ colcise -d 'type'
 <script src="app/puzzles/medium.js" type="text/javascript" charset="utf-8"></script>
 ```
 
-### Ignore sequential delimiters
+**Ignore sequential delimiters**
 
 By default colcise ignores subsequent delimiter strings. Assuming that the
 delimiter is the default space, the following behavior is to be expected.
@@ -116,6 +140,24 @@ hello    world
 goodbye  regret
 happy    times
 glorious day
+```
+
+**Aligning text in columns**
+
+```txt
+James 123
+George 1234
+Johny 652
+Roy 213
+```
+```bash
+colcise -l 'lr'
+```
+```txt
+James   123
+George 1234
+Johny   652
+Roy     213
 ```
 
 ## Bugs
