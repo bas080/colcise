@@ -6,20 +6,20 @@ import optparse
 
 def main(
         string,
-        delimeter,
-        seperator,
+        delimiter,
+        separator,
         ignore_subsequent,
         alignments,
-        append_seperator):
+        append_separator):
 
-    # if no seperator is passed as arg, then use the delimiter
-    seperator = seperator or delimeter
+    # if no separator is passed as arg, then use the delimiter
+    separator = separator or delimiter
 
-    rows = splitIntoColumns(splitIntoRows(string), delimeter, ignore_subsequent)
+    rows = splitIntoColumns(splitIntoRows(string), delimiter, ignore_subsequent)
     widths = columnWidths(rows)
-    colciseRows(rows, widths, seperator, alignments, append_seperator)
+    colciseRows(rows, widths, separator, alignments, append_separator)
 
-def colciseRows(rows, widths, seperator, alignments, append_seperator):
+def colciseRows(rows, widths, separator, alignments, append_separator):
     '''prints the rows while colcising'''
     result = []
     line = ''
@@ -46,13 +46,13 @@ def colciseRows(rows, widths, seperator, alignments, append_seperator):
             if not (alignment == 'r'):
                   line += field
 
-            if not (append_seperator):
-                line += seperator
+            if not (append_separator):
+                line += separator
 
             line += ( ' ' * diff )
 
-            if (append_seperator):
-                line += seperator
+            if (append_separator):
+                line += separator
 
         print line
         result.append(line)
@@ -84,10 +84,10 @@ def columnWidths(rows):
 def splitIntoRows(string):
     return string.split('\n')
 
-def splitIntoColumns(rows, delimeter, ignore_subsequent):
+def splitIntoColumns(rows, delimiter, ignore_subsequent):
     result = []
     for row in rows:
-        columns = row.split(delimeter)
+        columns = row.split(delimiter)
         if (ignore_subsequent):
             columns = filterEmpty(columns)
         result.append(columns)
@@ -107,24 +107,24 @@ parser = optparse.OptionParser()
 
 parser.set_defaults(debug = False,xls = False)
 
-parser.add_option('-d', '--delimeter', dest='delimeter', default=' ')
+parser.add_option('-d', '--delimiter', dest='delimiter', default=' ')
 
 parser.add_option('-i', '--ignore', action='store_false', dest='ignore_subsequent', default = True)
 
-parser.add_option('-s', '--seperator', dest='seperator', default = None)
+parser.add_option('-s', '--separator', dest='separator', default = None)
 
-parser.add_option('-a', '--append-seperator', action='store_true', dest='append_seperator', default = True)
+parser.add_option('-a', '--append-separator', action='store_true', dest='append_separator', default = True)
 
-parser.add_option('-p', '--prepend-seperator', action='store_false', dest='append_seperator')
+parser.add_option('-p', '--prepend-separator', action='store_false', dest='append_separator')
 
-parser.add_option('-l', '--allignment', dest='alignments', default='')
+parser.add_option('-l', '--alignment', dest='alignments', default='')
 
 (options, args) = parser.parse_args()
 
 main(
      sys.stdin.read(),
-     options.delimeter,
-     options.seperator,
+     options.delimiter,
+     options.separator,
      options.ignore_subsequent,
      options.alignments,
-     options.append_seperator);
+     options.append_separator);
