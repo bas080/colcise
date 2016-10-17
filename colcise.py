@@ -82,7 +82,7 @@ def columnWidths(rows):
     return widths
 
 def splitIntoRows(string):
-    return string.split('\n')
+    return string.split('\n')[:-1]
 
 def splitIntoColumns(rows, delimiter, ignore_subsequent):
     result = []
