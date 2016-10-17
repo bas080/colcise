@@ -35,7 +35,7 @@ def colciseRows(rows, widths, separator, alignments, append_separator):
             diff = width - len(field)
 
             if ( alignment == "r"):
-              line += ( ' ' * diff )
+                line += ( ' ' * diff )
 
             if (isLast(row, index)):
                 line += field
@@ -44,7 +44,7 @@ def colciseRows(rows, widths, separator, alignments, append_separator):
             # will left align if not right aligned, future feature might include
             # center
             if not (alignment == 'r'):
-                  line += field
+                line += field
 
             if not (append_separator):
                 line += separator
@@ -122,9 +122,9 @@ parser.add_option('-l', '--alignment', dest='alignments', default='')
 (options, args) = parser.parse_args()
 
 main(
-     sys.stdin.read(),
-     options.delimiter,
-     options.separator,
-     options.ignore_subsequent,
-     options.alignments,
-     options.append_separator);
+        sys.stdin.read(),
+        options.delimiter,
+        options.separator,
+        options.ignore_subsequent,
+        options.alignments,
+        options.append_separator);
