@@ -100,7 +100,7 @@ def filterEmpty(items):
     result=[]
     for item in items:
         if not (isEmpty(item)):
-            result.append(item.strip())
+            result.append(item)
     return result
 
 parser = optparse.OptionParser()
