@@ -41,8 +41,6 @@ def colciseRows(rows, widths, options):
                 line += field
                 break
 
-            # will left align if not right aligned, future feature might include
-            # center
             if not (alignment == 'r'):
                 line += field
 
