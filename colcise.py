@@ -104,7 +104,7 @@ parser.add_option('-d', '--delimiter', dest='delimiter', default=' ')
 
 parser.add_option('-i', '--ignore', action='store_false', dest='ignore_subsequent', default = False)
 
-parser.add_option('-s', '--separator', dest='separator', default = None)
+parser.add_option('-s', '--separator', dest='separator', default=' ')
 
 parser.add_option('-a', '--append-separator', action='store_true', dest='append_separator', default = True)
 
