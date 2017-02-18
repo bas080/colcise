@@ -19,6 +19,9 @@ def colciseRows(rows, widths, options):
     for row in rows:
         for index, field in enumerate(row):
 
+            if (options.ignore_subsequent and field == ''):
+                continue;
+
             alignment='l' #default alignment
 
             if (len(options.alignments) > index):
@@ -81,19 +84,7 @@ def rowsToColumns(rows, options):
     result = []
     for row in rows:
         columns = row.split(options.delimiter)
-        if (options.ignore_subsequent):
-            columns = filterEmpty(columns)
         result.append(columns)
-    return result
-
-def isEmpty(v):
-    return (v == '')
-
-def filterEmpty(items):
-    result=[]
-    for item in items:
-        if not (isEmpty(item)):
-            result.append(item)
     return result
 
 parser = optparse.OptionParser()
