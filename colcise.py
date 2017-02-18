@@ -27,6 +27,10 @@ def colciseRows(rows, widths, options):
             if (len(options.alignments) > index):
                 alignment = options.alignments[index]
 
+            if (options.strip):
+                field = field.strip()
+
+
             width = widths[str(index)]
             diff = width - len(field)
 
@@ -100,6 +104,8 @@ parser.add_option('-s', '--separator', dest='separator', default=' ')
 parser.add_option('-a', '--append-separator', action='store_true', dest='append_separator', default = True)
 
 parser.add_option('-p', '--prepend-separator', action='store_false', dest='append_separator')
+
+parser.add_option('-t', '--strip', action='store_false', dest='strip', default=True)
 
 parser.add_option('-l', '--alignment', dest='alignments', default='')
 
