@@ -4,22 +4,15 @@
 import sys
 import optparse
 
-def main(
-        string,
-        delimiter,
-        separator,
-        ignore_subsequent,
-        alignments,
-        append_separator):
+def main(string, options):
 
     # if no separator is passed as arg, then use the delimiter
-    separator = separator or delimiter
+    separator = options.separator or options.delimiter
 
-    rows = splitIntoColumns(splitIntoRows(string), delimiter, ignore_subsequent)
-    widths = columnWidths(rows)
-    colciseRows(rows, widths, separator, alignments, append_separator)
+    rows = rowsToColumns(stringToRows(string), options)
+    colciseRows(rows, columnWidths(rows), options)
 
-def colciseRows(rows, widths, separator, alignments, append_separator):
+def colciseRows(rows, widths, options):
     '''prints the rows while colcising'''
     result = []
     line = ''
@@ -28,13 +21,13 @@ def colciseRows(rows, widths, separator, alignments, append_separator):
 
             alignment='l' #default alignment
 
-            if (len(alignments) > index):
-                alignment = alignments[index]
+            if (len(options.alignments) > index):
+                alignment = options.alignments[index]
 
             width = widths[str(index)]
             diff = width - len(field)
 
-            if ( alignment == "r"):
+            if (alignment == "r"):
                 line += ( ' ' * diff )
 
             if (isLast(row, index)):
@@ -46,13 +39,13 @@ def colciseRows(rows, widths, separator, alignments, append_separator):
             if not (alignment == 'r'):
                 line += field
 
-            if not (append_separator):
-                line += separator
+            if not (options.append_separator):
+                line += options.separator
 
             line += ( ' ' * diff )
 
-            if (append_separator):
-                line += separator
+            if (options.append_separator):
+                line += options.separator
 
         print line
         result.append(line)
@@ -81,14 +74,14 @@ def columnWidths(rows):
                 widths[prop] = len(field)
     return widths
 
-def splitIntoRows(string):
+def stringToRows(string):
     return string.split('\n')[:-1]
 
-def splitIntoColumns(rows, delimiter, ignore_subsequent):
+def rowsToColumns(rows, options):
     result = []
     for row in rows:
-        columns = row.split(delimiter)
-        if (ignore_subsequent):
+        columns = row.split(options.delimiter)
+        if (options.ignore_subsequent):
             columns = filterEmpty(columns)
         result.append(columns)
     return result
@@ -121,10 +114,4 @@ parser.add_option('-l', '--alignment', dest='alignments', default='')
 
 (options, args) = parser.parse_args()
 
-main(
-        sys.stdin.read(),
-        options.delimiter,
-        options.separator,
-        options.ignore_subsequent,
-        options.alignments,
-        options.append_separator);
+main(sys.stdin.read(), options);
