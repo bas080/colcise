@@ -93,7 +93,7 @@ parser.set_defaults(debug = False,xls = False)
 
 parser.add_option('-d', '--delimiter', dest='delimiter', default=' ')
 
-parser.add_option('-i', '--ignore', action='store_false', dest='ignore_subsequent', default = False)
+parser.add_option('-i', '--ignore', action='store_false', dest='ignore_subsequent', default = True)
 
 parser.add_option('-s', '--separator', dest='separator', default=' ')
 
