@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -11,55 +11,46 @@ def colcise_rows(rows, widths, options):
     line = ''
     for row in rows:
         for index, field in enumerate(row):
-
-            if (options.ignore_subsequent and field == ''):
+            if options.ignore_subsequent and field == '':
                 continue
 
             alignment = 'l'  # default alignment
 
-            if (len(options.alignments) > index):
+            if len(options.alignments) > index:
                 alignment = options.alignments[index]
 
-            if (options.strip):
+            if options.strip:
                 field = field.strip()
 
             width = widths[str(index)]
             diff = width - len(field)
 
-            if (alignment == "r"):
-                line += (' ' * diff)
+            if alignment == 'r':
+                line += ' ' * diff
 
-            if (is_last(row, index)):
+            if is_last(row, index):
                 line += field
                 break
 
-            if not (alignment == 'r'):
+            if not alignment == 'r':
                 line += field
 
-            if not (options.append_separator):
+            if not options.append_separator:
                 line += options.separator
 
-            line += (' ' * diff)
+            line += ' ' * diff
 
-            if (options.append_separator):
+            if options.append_separator:
                 line += options.separator
 
+        print(line)
         result.append(line)
         line = ''
     return result
 
 
-def repeat(string, times):
-    return str(string) * times
-
-
 def is_last(array, index):
-    return (len(array) == (index + 1))
-
-
-def within_array(array, index):
-    '''check if the index is in the array'''
-    return (index > len(array))
+    return len(array) == index + 1
 
 
 def column_widths(rows):
@@ -106,5 +97,5 @@ if __name__ == '__main__':
     parser.add_option('-t', '--strip', action='store_false',
                       dest='strip', default=True)
     parser.add_option('-l', '--alignment', dest='alignments', default='')
-    (options, _) = parser.parse_args()
+    options, _ = parser.parse_args()
     main(sys.stdin.read(), options)
