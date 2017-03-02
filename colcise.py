@@ -62,7 +62,7 @@ def within_array(array, index):
     return (index > len(array))
 
 
-def columnWidths(rows):
+def column_widths(rows):
     '''returns the max widths of the columns'''
     widths = {}
     for row in rows:
@@ -89,7 +89,7 @@ def rows_to_columns(rows, options):
 
 def main(string, options):
     rows = rows_to_columns(string_to_rows(string), options)
-    colcise_rows(rows, columnWidths(rows), options)
+    colcise_rows(rows, column_widths(rows), options)
 
 
 if __name__ == '__main__':
