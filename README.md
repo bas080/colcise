@@ -162,3 +162,8 @@ Roy     213
 
 ## Bugs
 - An unwanted new line is added at the bottom
+
+## Contributors
+
+- [Bas Huis](https://github.com/bas080)
+- [Antonis Kalou](https://github.com/kalouantonis)
