@@ -5,8 +5,9 @@ import sys
 import optparse
 
 
+# FIXME: rows is actually cols
 def colcise_rows(rows, widths, options):
-    '''prints the rows while colcising'''
+    """Prints the rows while colcising"""
     result = []
     line = ''
     for row in rows:
@@ -50,11 +51,12 @@ def colcise_rows(rows, widths, options):
 
 
 def is_last(array, index):
+    """Returns true if `index` is the last one in list `array`."""
     return len(array) == index + 1
 
 
 def column_widths(rows):
-    '''returns the max widths of the columns'''
+    """Returns the max widths of the columns"""
     widths = {}
     for row in rows:
         for index, field in enumerate(row):
@@ -70,16 +72,13 @@ def string_to_rows(string):
     return string.split('\n')[:-1]
 
 
-def rows_to_columns(rows, options):
-    result = []
-    for row in rows:
-        columns = row.split(options.delimiter)
-        result.append(columns)
-    return result
+def rows_to_columns(rows, delimiter):
+    return [row.split(delimiter) for row in rows]
 
 
 def main(string, options):
-    rows = rows_to_columns(string_to_rows(string), options)
+    rows = string_to_rows(string)
+    rows = rows_to_columns(rows, options.delimiter)
     colcise_rows(rows, column_widths(rows), options)
 
 

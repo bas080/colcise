@@ -163,6 +163,12 @@ Roy     213
 ## Bugs
 - An unwanted new line is added at the bottom
 
+## Running tests
+
+To run tests just run the test script like this
+
+    python3 tests.py
+
 ## Contributors
 
 - [Bas Huis](https://github.com/bas080)
