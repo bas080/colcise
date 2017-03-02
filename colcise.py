@@ -4,15 +4,8 @@
 import sys
 import optparse
 
-def main(string, options):
 
-    # if no separator is passed as arg, then use the delimiter
-    separator = options.separator or options.delimiter
-
-    rows = rowsToColumns(stringToRows(string), options)
-    colciseRows(rows, columnWidths(rows), options)
-
-def colciseRows(rows, widths, options):
+def colcise_rows(rows, widths, options):
     '''prints the rows while colcising'''
     result = []
     line = ''
@@ -20,9 +13,9 @@ def colciseRows(rows, widths, options):
         for index, field in enumerate(row):
 
             if (options.ignore_subsequent and field == ''):
-                continue;
+                continue
 
-            alignment='l' #default alignment
+            alignment = 'l'  # default alignment
 
             if (len(options.alignments) > index):
                 alignment = options.alignments[index]
@@ -30,14 +23,13 @@ def colciseRows(rows, widths, options):
             if (options.strip):
                 field = field.strip()
 
-
             width = widths[str(index)]
             diff = width - len(field)
 
             if (alignment == "r"):
-                line += ( ' ' * diff )
+                line += (' ' * diff)
 
-            if (isLast(row, index)):
+            if (is_last(row, index)):
                 line += field
                 break
 
@@ -47,25 +39,28 @@ def colciseRows(rows, widths, options):
             if not (options.append_separator):
                 line += options.separator
 
-            line += ( ' ' * diff )
+            line += (' ' * diff)
 
             if (options.append_separator):
                 line += options.separator
 
-        print line
         result.append(line)
         line = ''
     return result
 
+
 def repeat(string, times):
     return str(string) * times
 
-def isLast(array, index):
+
+def is_last(array, index):
     return (len(array) == (index + 1))
 
-def withinArray(array, index):
+
+def within_array(array, index):
     '''check if the index is in the array'''
     return (index > len(array))
+
 
 def columnWidths(rows):
     '''returns the max widths of the columns'''
@@ -79,34 +74,37 @@ def columnWidths(rows):
                 widths[prop] = len(field)
     return widths
 
-def stringToRows(string):
+
+def string_to_rows(string):
     return string.split('\n')[:-1]
 
-def rowsToColumns(rows, options):
+
+def rows_to_columns(rows, options):
     result = []
     for row in rows:
         columns = row.split(options.delimiter)
         result.append(columns)
     return result
 
-parser = optparse.OptionParser()
 
-parser.set_defaults(debug = False,xls = False)
+def main(string, options):
+    rows = rows_to_columns(string_to_rows(string), options)
+    colcise_rows(rows, columnWidths(rows), options)
 
-parser.add_option('-d', '--delimiter', dest='delimiter', default=' ')
 
-parser.add_option('-i', '--ignore', action='store_false', dest='ignore_subsequent', default = True)
-
-parser.add_option('-s', '--separator', dest='separator', default=' ')
-
-parser.add_option('-a', '--append-separator', action='store_true', dest='append_separator', default = True)
-
-parser.add_option('-p', '--prepend-separator', action='store_false', dest='append_separator')
-
-parser.add_option('-t', '--strip', action='store_false', dest='strip', default=True)
-
-parser.add_option('-l', '--alignment', dest='alignments', default='')
-
-(options, args) = parser.parse_args()
-
-main(sys.stdin.read(), options);
+if __name__ == '__main__':
+    parser = optparse.OptionParser()
+    parser.set_defaults(debug=False, xls=False)
+    parser.add_option('-d', '--delimiter', dest='delimiter', default=' ')
+    parser.add_option('-i', '--ignore', action='store_false',
+                      dest='ignore_subsequent', default=True)
+    parser.add_option('-s', '--separator', dest='separator', default=' ')
+    parser.add_option('-a', '--append-separator', action='store_true',
+                      dest='append_separator', default=True)
+    parser.add_option('-p', '--prepend-separator', action='store_false',
+                      dest='append_separator')
+    parser.add_option('-t', '--strip', action='store_false',
+                      dest='strip', default=True)
+    parser.add_option('-l', '--alignment', dest='alignments', default='')
+    (options, _) = parser.parse_args()
+    main(sys.stdin.read(), options)
