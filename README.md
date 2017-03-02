@@ -1,7 +1,7 @@
 # Colcise
 
 Python script that takes a string of multiple lines (\n) and an argument as that
-is the deli-meter to be used to create columns.
+is the delimeter to be used to create columns.
 
 Colcise works nicely together with vim's ability to perform external commands on
 visual selections. One performs colciseness on a visual selection with a few
@@ -16,7 +16,7 @@ separator.
 
 ## Setup
 
-For those that now how to add a script or a folder to their $PATH variable know
+For those that know how to add a script or a folder to their $PATH variable know
 how to install get a python script to work in their command line.
 
 Regardless I will share with you how I have set it up on my system.
