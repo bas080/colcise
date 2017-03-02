@@ -1,5 +1,7 @@
 # Colcise
 
+[![Build Status](https://travis-ci.org/bas080/colcise.svg?branch=master)](https://travis-ci.org/bas080/colcise)
+
 Python script that takes a string of multiple lines (\n) and an argument as that
 is the delimeter to be used to create columns.
 
