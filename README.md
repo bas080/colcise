@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/bas080/colcise.svg?branch=master)](https://travis-ci.org/bas080/colcise)
 
+> Working on a [Haskell rewrite](https://github.com/bas080/colcise/tree/haskell).
+
 Python script that takes a string of multiple lines (\n) and an argument as that
 is the delimeter to be used to create columns.
 
