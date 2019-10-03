@@ -67,7 +67,7 @@ If $PATH is setup correctly you should now be able to use colcise.
 
         l = left
         r = right
-        m = middle <<< not yet implemented
+        m = middle
 
     -i
     --ignore
@@ -162,8 +162,14 @@ Johny   652
 Roy     213
 ```
 
+## Roadmap
+
+- Center alignment with c
+
 ## Bugs
-- An unwanted new line is added at the bottom
+
+- Does not support STDIN or PIPES. Will require temp files.
+- An unwanted new line is added at the bottom.
 
 ## Running tests
 
