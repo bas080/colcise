@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/bas080/colcise.svg?branch=master)](https://travis-ci.org/bas080/colcise)
 
-Python script that takes a string of multiple lines (\n) and an argument as that
+Perl script that takes a string of multiple lines (\n) and an argument as that
 is the delimeter to be used to create columns.
 
 Colcise works nicely together with vim's ability to perform external commands on
@@ -168,6 +168,7 @@ Roy     213
 
 ## Bugs
 
+- Not correctly joining with latest matches change.
 - Does not support STDIN or PIPES. Will require temp files.
 - An unwanted new line is added at the bottom.
 
