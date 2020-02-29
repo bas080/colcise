@@ -11,12 +11,14 @@ use warnings;
 use List::Util qw(max);
 use List::MoreUtils qw(pairwise);
 use Getopt::Long 2.49 qw(:config auto_help);
+use File::Temp qw(tempfile);
 
 my @files = ();
 my $delimeter = ' ';
 my $separator;
 my $ignore = 1;
 my @align;
+my $TMP;
 
 =head1 SYNOPSIS
 
@@ -77,11 +79,17 @@ GetOptions (
 
 my @columns = ();
 
-open(my $FF, '<', $ARGV[0])
-  or die $!;
+$TMP = tempfile();
 
-while (my $line = <$FF>) {
+while (<>) {
+  print $TMP $_;
+}
+
+seek($TMP, 0, 0);
+
+while (my $line = <$TMP>) {
   chomp($line);
+
   my @words = split($delimeter, $line);
 
   for my $i (0 .. $#words) {
@@ -89,10 +97,10 @@ while (my $line = <$FF>) {
   }
 }
 
-seek($FF, 0, 0);
+seek($TMP, 0, 0);
 
 # consider creating a subroutine for itterating over the passed in file
-while (my $line = <$FF>) {
+while (my $line = <$TMP>) {
   # This is duplicated in the previous itteration
   chomp($line);
   my @words = split($delimeter, $line);
@@ -104,7 +112,7 @@ while (my $line = <$FF>) {
   for my $i (0 .. $#words) {
     my $word = $words[$i];
     my $size = length($word);
-    my $column = $columns[$i];
+    my $column = $columns[$i] || $size;
     my $alignment = $align[$i] || 'l';
     my $rest = $column - $size;
     my $match = ($matches[$i] && $separator) || $matches[$i] || '';
