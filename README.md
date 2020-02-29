@@ -1,6 +1,6 @@
-# Colcise
+> THIS DOCUMENTATION IS FOR THE PYTHON VERSION.
 
-[![Build Status](https://travis-ci.org/bas080/colcise.svg?branch=master)](https://travis-ci.org/bas080/colcise)
+# Colcise
 
 Perl script that takes a string of multiple lines (\n) and an argument as that
 is the delimeter to be used to create columns.
