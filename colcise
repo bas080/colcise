@@ -1,5 +1,10 @@
 #!/usr/bin/env perl
 
+# author:  Bas Huis
+# github:  https://github.com/bas080/colcise
+# created: Tue Mar  3 01:00:37 CET 2020
+# license: GNU General Public License 3.0
+
 =head1 NAME
 
 colcise - outline text into columns
@@ -56,7 +61,7 @@ Overwrite the delimeter matches with string.
 
 =item B<-a, --align>=<direction>...
 
-Valid values include l, R, and r
+Valid values include L, l, R, and r
 
 =item B<-i, --ignore>
 
@@ -66,6 +71,8 @@ delimiter to create a new column. TBD
 =item B<-i, --no-ignore>
 
 TBD
+
+=back
 
 =cut
 
@@ -112,7 +119,7 @@ while (my $line = <$TMP>) {
   for my $i (0 .. $#words) {
     my $word = $words[$i];
     my $size = length($word);
-    my $column = $columns[$i] || $size;
+    my $column = $columns[$i];
     my $alignment = $align[$i] || 'l';
     my $rest = $column - $size;
     my $match = ($matches[$i] && $separator) || $matches[$i] || '';
