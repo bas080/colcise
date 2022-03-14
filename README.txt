@@ -30,6 +30,10 @@ OPTIONS
 BUGS
     https://github.com/bas080/colcise/issues
 
+LINKS
+    https://stackoverflow.com/questions/1229900/reformat-in-vim-for-a-nice-c
+    olumn-layout
+
 AUTHOR
     Written by Bassim Huis and Antonis Kalou.
 
