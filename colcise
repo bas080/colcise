@@ -21,7 +21,7 @@ use File::Temp qw(tempfile);
 my @files = ();
 my $delimeter = ' ';
 my $separator;
-my $ignore = 1;
+my $no_ignore = 0;
 my @align;
 my $TMP;
 
@@ -31,8 +31,8 @@ colcise
 [--delimeter=<regex>]
 [--separator=<string>]
 [--align=<direction>...]
-[--ignore][--no-ignore]
-<file>
+[--no-ignore]
+[<file>]
 
 =cut
 
@@ -63,16 +63,28 @@ Overwrite the delimeter matches with string.
 
 Valid values include L, l, R, and r
 
-=item B<-i, --ignore>
+=item B<-n, --no-ignore>
 
-Toggles the ignoring of subsequent delimiters to false, causing every
+Sets the ignoring of subsequent delimiters to false, causing every
 delimiter to create a new column. TBD
 
-=item B<-i, --no-ignore>
-
-TBD
-
 =back
+
+=head1 BUGS
+
+https://github.com/bas080/colcise/issues
+
+=cut
+
+=head1 AUTHOR
+
+Written by Bassim Huis and Antonis Kalou.
+
+=cut
+
+=head1 LICENSE
+
+GPL-3.0
 
 =cut
 
@@ -80,7 +92,7 @@ GetOptions (
   'delimeter=s' => \$delimeter,
   'separator=s' => \$separator,
   'align=s{1,}' => \@align,
-  'ignore' => \$ignore # TO BE IMPLEMENTED
+  'no-ignore' => \$no_ignore # TO BE IMPLEMENTED
 )
   or die "Could not parse options\n";
 
@@ -114,7 +126,11 @@ while (my $line = <$TMP>) {
   my @result = ();
   my @matches;
 
-  push (@matches, $&) while ($line =~ /$delimeter/g);
+  if ($no_ignore) {
+    push (@matches, $&);
+  } else {
+    push (@matches, $&) while ($line =~ /$delimeter/g);
+  }
 
   for my $i (0 .. $#words) {
     my $word = $words[$i];
@@ -125,9 +141,9 @@ while (my $line = <$TMP>) {
     my $match = ($matches[$i] && $separator) || $matches[$i] || '';
 
     if ($alignment eq 'r') {
-      push @result, (' ' x $rest) .  $word . $match;
+      push @result, (' ' x $rest) . $word . $match;
     } elsif ($alignment eq 'L') {
-      push @result, $word .  $match . (' ' x $rest);
+      push @result, $word . $match . (' ' x $rest);
     } else {
       push @result, $word . (' ' x $rest) . $match;
     }
