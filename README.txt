@@ -3,7 +3,7 @@ NAME
 
 SYNOPSIS
     colcise [--delimeter=<regex>] [--separator=<string>]
-    [--align=<direction>...] [--ignore][--no-ignore] <file>
+    [--align=<direction>...] [--no-ignore] [<file>]
 
 DESCRIPTION
     colcise is a CLI tool for formatting text into human readable columns.
@@ -23,10 +23,16 @@ OPTIONS
     -a, --align=<direction>...
         Valid values include L, l, R, and r
 
-    -i, --ignore
-        Toggles the ignoring of subsequent delimiters to false, causing
-        every delimiter to create a new column. TBD
+    -n, --no-ignore
+        Sets the ignoring of subsequent delimiters to false, causing every
+        delimiter to create a new column. TBD
 
-    -i, --no-ignore
-        TBD
+BUGS
+    https://github.com/bas080/colcise/issues
+
+AUTHOR
+    Written by Bassim Huis and Antonis Kalou.
+
+LICENSE
+    GPL-3.0
 
